@@ -1,143 +1,82 @@
-# Firefox OKLCH Color Ramp Tool
+# OKLCH Lab
 
-A live color adjustment tool for fine-tuning Firefox's OKLCH-based color system.
+An interactive tool for creating and fine-tuning perceptually uniform color palettes using the OKLCH color space.
 
 ## Features
 
-- **Interactive Color Grid** - Visual display of all color ramps
-- **Live OKLCH Editing** - Adjust Lightness, Chroma, and Hue with real-time preview
-- **12-Step Color Ramps** - Complete color system with 8 hues (red, orange, yellow, green, cyan, blue, purple, gray)
-- **CSS Export** - Generate production-ready CSS custom properties
-- **HEX Conversion** - See hex equivalents for each OKLCH color
+- **Interactive Color Grid** - Visual display of all color ramps with real-time preview
+- **Perceptual Color Editing** - Adjust Lightness, Chroma, and Hue with precision controls
+- **Flexible Step Count** - Generate color ramps from 6 to 20 steps
+- **Advanced Curve Controls** - Fine-tune lightness and chroma progression with customizable peak positions
+- **Hue Ramping** - Create optically balanced color ramps with dynamic hue shifting
+- **Gamut-Aware Color Generation** - Culori integration ensures all colors stay within sRGB gamut
+- **Export Options** - Download as SVG or copy as CSS custom properties
+- **Preset System** - Save and load color system configurations
+
+## What is OKLCH?
+
+OKLCH is a perceptually uniform color space that makes it easier to create harmonious color palettes:
+
+- **L (Lightness)**: 0-1 - Perceived brightness (0 = black, 1 = white)
+- **C (Chroma)**: 0-0.4 - Colorfulness/saturation
+- **H (Hue)**: 0-360° - Color angle (0° = red, 120° = green, 240° = blue)
+
+Unlike RGB or HSL, equal steps in OKLCH values produce equal perceptual differences in color.
 
 ## Usage
 
-1. **Open `index.html`** in a modern browser (Chrome, Firefox, Safari, Edge)
-2. **Click any color** in the grid to edit it
-3. **Adjust sliders** to fine-tune Lightness, Chroma, and Hue values
-4. **Export CSS** when satisfied with your color system
+1. Open `index.html` in a modern browser
+2. Select a preset or customize individual color ramps
+3. Click any row to edit its lightness curve, chroma curve, and hue
+4. Adjust the step count to generate more or fewer color variations
+5. Export your palette as SVG or CSS when satisfied
 
 ## Color System Structure
 
-Each hue has 12 steps:
-- Steps 1-3: Light tints
-- Steps 4-6: Mid-range colors
-- Steps 7-9: Saturated colors
-- Steps 10-12: Dark shades
+The default system includes 9 hues:
+- **Cyan** - Cool blue-green tones
+- **Green** - Natural greens
+- **Yellow** - Warm yellows with optional hue ramping for optical balance
+- **Orange** - Warm orange tones
+- **Red** - Vibrant reds
+- **Pink** - Magentas and pinks
+- **Purple** - Deep purples
+- **Violet** - Blue-violet tones
+- **Blue** - True blues
 
-## OKLCH Values
+Each hue can generate 6-20 color steps with customizable:
+- **Lightness curves** - Linear, ease-in, ease-out, or S-curve progressions
+- **Chroma curves** - Control saturation peak position and falloff
+- **Hue ramping** - Shift hue across lightness for optical correction
 
-- **L (Lightness)**: 0-100% - How light or dark the color is
-- **C (Chroma)**: 0-0.4 - How saturated/vivid the color is
-- **H (Hue)**: 0-360° - The color angle on the color wheel
+## Presets
 
-## Browser Compatibility
+### Preset 01 (User Tuned)
+Optically balanced color system with custom yellow hue ramping (95.8° → 71.5°). Features very dark endpoints and balanced warm/cool saturation.
 
-Requires a browser with OKLCH color support:
+### Preset 06 (Scientifically Balanced)
+Mathematically normalized version with consistent peak positions (0.35-0.40) and raised minimum lightness (0.15) to prevent hue drift in darkest colors.
+
+## Technical Details
+
+**Culori Integration:**
+- Accurate gamut checking with `culori.inGamut('rgb')()`
+- Chroma clamping with `culori.clampChroma()` prevents hue shifting
+- Binary search algorithm finds maximum displayable chroma for any L/H pair
+
+**Browser Compatibility:**
 - Chrome 111+
 - Safari 15.4+
 - Firefox 113+
 - Edge 111+
 
-## Presets
+## Development
 
-### Preset 01 (SVG Match)
-- Original color system matching the first approved SVG export
-- 12 steps per hue
-- Chroma curves with varying peak positions (0.18-0.82)
+Built with:
+- Vanilla JavaScript (ES6+)
+- [Tweakpane](https://tweakpane.github.io/docs/) - Parameter controls
+- [Culori](https://culorijs.org/) - Color space conversions and gamut operations
 
-### Preset 02 (Max Saturation)
-- Algorithmically calculated maximum saturation for each hue
-- Finds gamut boundaries using binary search
-- 5% safety margin to prevent edge cases
+## License
 
-### Preset 03 (Firefox Brand)
-- Based on 15-step SVG with balanced saturated colors
-- Matches Firefox brand colors: `#7543E3` (violet), `#FF453F` (red)
-- Chroma peaks mostly at 0.50 (middle of lightness range)
-- Lightness range: 0.07-0.98 (very dark to very light)
-- Key characteristics:
-  - Blue has highest chroma (0.258)
-  - Cyan/teal has lowest chroma (0.106)
-  - Most hues peak chroma in middle lightness range
-
-### Preset 04 (Firefox Balanced)
-- Enhanced warm colors from Preset 03
-- Boosted yellow (0.190), gold (0.165), orange (0.220) chroma
-- Adjusted red hue to 27.1° for Firefox brand match
-- Cool colors (blue/purple/violet) unchanged
-
-### Preset 05 (Tuned Hues)
-- **Cyan hue adjusted to 207.4°** (more blue-cyan)
-- **Gold hue adjusted to 82.6°** (warmer gold tone)
-- **Culori-calculated max chroma** for all warm colors:
-  - Cyan: 0.123 (peak at L=0.80)
-  - Green: 0.231 (peak at L=0.80) - elevated
-  - Yellow: 0.148 (peak at L=0.80) - elevated
-  - Gold: 0.148 (peak at L=0.80) - elevated
-  - Orange: 0.125 (peak at L=0.50) - elevated
-- All chroma values are 90% of gamut maximum for safety
-- Chroma peaks earlier (0.30) for cyan/green/yellow/gold
-
-### Preset 06 (Scientifically Balanced)
-Based on analysis of Preset 01 with scientific corrections:
-
-**Warm Color Chroma Boost:**
-- Yellow: 0.167 → **0.200** (+20%)
-- Gold: 0.152 → **0.180** (+18%)
-- Orange: 0.165 → **0.200** (+21%)
-
-**Normalized Peak Positions:**
-- All colors peak at 0.35-0.40 (consistent curve shape)
-- Cyan/Green: moved from 0.27 → 0.35
-- Yellow/Gold: moved from 0.18 → 0.35
-- Orange/Red: kept at 0.38
-- Cool colors: kept at 0.40
-
-**Hue Stability Fix:**
-- Minimum lightness raised to 0.15 (from 0.078-0.084)
-- Eliminates hue drift in darkest colors
-- Trade-off: Slightly less dark range, but stable hue
-
-**Result:**
-- Balanced saturation across all hues
-- Consistent chroma curve behavior
-- No hue drift issues
-- Maintains user's optical tuning preferences
-
-### Preset 07 (User Preferred) ⭐ Best of Both Worlds
-Keeps user's preferred colors from Preset 01, balances warm colors:
-
-**Preserved from Preset 01 (unchanged):**
-- Cyan: C=0.121
-- Green: C=0.228
-- Red: C=0.201
-- Pink: C=0.219
-- Purple: C=0.221
-- Violet: C=0.226
-- Blue: C=0.258
-
-**Warm Colors Boosted to Match Red (C=0.201):**
-- Yellow: 0.167 → **0.201** (+20%)
-- Gold: 0.152 → **0.201** (+32%)
-- Orange: 0.165 → **0.201** (+22%)
-
-**Result:**
-- Retains the exact look/feel of preferred colors
-- Warm colors now match red's saturation
-- More pleasing overall balance
-- Keeps original peak positions and lightness ranges
-
-## Culori Integration
-
-Gamut checking now uses [Culori](https://culorijs.org/) when available for more accurate RGB gamut validation:
-- `culori.inGamut('rgb')()` - checks if color is in sRGB gamut
-- Falls back to manual OKLCH→sRGB conversion if Culori not loaded
-- Imported from: `https://cdn.skypack.dev/culori@3`
-
-## Next Steps
-
-- Contrast ratio testing
-- Color harmony suggestions
-- Target color matching (e.g., "make yellow-10 match #FEF097")
-- Support for 15-step ramps (currently limited to 12)
+MIT License - see LICENSE file for details

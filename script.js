@@ -59,6 +59,12 @@ const colorSystem = {
     lightnessCurve: { start: 0.95, end: 0.15, type: 'linear' },
     chromaCurve: { start: 0.023, peak: 0.171, end: 0.087, peakPosition: 0.82 },
     steps: []
+  },
+  gray: {
+    h: 0, l: 0.50, c: 0.0, hex: '#808080',
+    lightnessCurve: { start: 0.98, end: 0.10, type: 'linear' },
+    chromaCurve: { start: 0.0, peak: 0.0, end: 0.0, peakPosition: 0.5 },
+    steps: []
   }
 };
 
@@ -210,11 +216,34 @@ const presets = {
       pink: { h: 337.1, l: 0.52, c: 0.219, lightnessCurve: { start: 0.97, end: 0.084, type: 'linear' }, chromaCurve: { start: 0.021, peak: 0.219, end: 0.019, peakPosition: 0.45 } },
       purple: { h: 312.8, l: 0.53, c: 0.221, lightnessCurve: { start: 0.98, end: 0.082, type: 'linear' }, chromaCurve: { start: 0.013, peak: 0.221, end: 0.020, peakPosition: 0.45 } },
       violet: { h: 291.0, l: 0.53, c: 0.226, lightnessCurve: { start: 0.979, end: 0.078, type: 'linear' }, chromaCurve: { start: 0.011, peak: 0.226, end: 0.018, peakPosition: 0.45 } },
-      blue: { h: 275.2, l: 0.53, c: 0.258, lightnessCurve: { start: 0.971, end: 0.084, type: 'linear' }, chromaCurve: { start: 0.014, peak: 0.258, end: 0.012, peakPosition: 0.45 } }
+      blue: { h: 275.2, l: 0.53, c: 0.258, lightnessCurve: { start: 0.971, end: 0.084, type: 'linear' }, chromaCurve: { start: 0.014, peak: 0.258, end: 0.012, peakPosition: 0.45 } },
+      gray: { h: 275.0, l: 0.54, c: 0.022, lightnessCurve: { start: 0.98, end: 0.15, type: 'linear' }, chromaCurve: { start: 0.02, peak: 0.03, end: 0.04, peakPosition: 0.50 } }
     }
   },
-  '06': {
-    name: 'Preset 06 (Scientifically Balanced)',
+  '02': {
+    name: 'Preset 02 (Balanced Hybrid)',
+    colors: {
+      // Compromise between 01 and 03: darker endpoints than 03, but lighter than 01
+      cyan: { h: 207.3, l: 0.50, c: 0.121, lightnessCurve: { start: 0.98, end: 0.11, type: 'linear' }, chromaCurve: { start: 0.017, peak: 0.121, end: 0.020, peakPosition: 0.30 } },
+      green: { h: 140.0, l: 0.50, c: 0.228, lightnessCurve: { start: 0.98, end: 0.11, type: 'linear' }, chromaCurve: { start: 0.031, peak: 0.228, end: 0.033, peakPosition: 0.30 } },
+      yellow: {
+        h: 92.0, l: 0.62, c: 0.201,
+        lightnessCurve: { start: 0.966, end: 0.18, type: 'linear' },
+        chromaCurve: { start: 0.093, peak: 0.201, end: 0.068, peakPosition: 0.36 },
+        hueCurve: { start: 95.8, end: 71.5, type: 'linear' },
+        useHueRamping: true
+      },
+      orange: { h: 46.6, l: 0.59, c: 0.201, lightnessCurve: { start: 0.958, end: 0.22, type: 'linear' }, chromaCurve: { start: 0.022, peak: 0.201, end: 0.066, peakPosition: 0.36 } },
+      red: { h: 27.0, l: 0.56, c: 0.201, lightnessCurve: { start: 0.95, end: 0.16, type: 'linear' }, chromaCurve: { start: 0.023, peak: 0.201, end: 0.067, peakPosition: 0.36 } },
+      pink: { h: 337.1, l: 0.52, c: 0.219, lightnessCurve: { start: 0.97, end: 0.12, type: 'linear' }, chromaCurve: { start: 0.021, peak: 0.219, end: 0.025, peakPosition: 0.42 } },
+      purple: { h: 312.8, l: 0.53, c: 0.221, lightnessCurve: { start: 0.98, end: 0.12, type: 'linear' }, chromaCurve: { start: 0.013, peak: 0.221, end: 0.025, peakPosition: 0.42 } },
+      violet: { h: 291.0, l: 0.53, c: 0.226, lightnessCurve: { start: 0.979, end: 0.12, type: 'linear' }, chromaCurve: { start: 0.011, peak: 0.226, end: 0.023, peakPosition: 0.42 } },
+      blue: { h: 275.2, l: 0.53, c: 0.258, lightnessCurve: { start: 0.971, end: 0.12, type: 'linear' }, chromaCurve: { start: 0.014, peak: 0.258, end: 0.019, peakPosition: 0.42 } },
+      gray: { h: 0, l: 0.50, c: 0.0, lightnessCurve: { start: 0.98, end: 0.12, type: 'linear' }, chromaCurve: { start: 0.0, peak: 0.0, end: 0.0, peakPosition: 0.5 } }
+    }
+  },
+  '03': {
+    name: 'Preset 03 (Scientifically Balanced)',
     colors: {
       cyan: { h: 207.3, l: 0.50, c: 0.121, lightnessCurve: { start: 0.98, end: 0.15, type: 'linear' }, chromaCurve: { start: 0.017, peak: 0.121, end: 0.025, peakPosition: 0.35 } },
       green: { h: 140.0, l: 0.50, c: 0.228, lightnessCurve: { start: 0.98, end: 0.15, type: 'linear' }, chromaCurve: { start: 0.031, peak: 0.228, end: 0.040, peakPosition: 0.35 } },
@@ -224,7 +253,31 @@ const presets = {
       pink: { h: 337.1, l: 0.52, c: 0.219, lightnessCurve: { start: 0.97, end: 0.15, type: 'linear' }, chromaCurve: { start: 0.021, peak: 0.219, end: 0.030, peakPosition: 0.40 } },
       purple: { h: 312.8, l: 0.53, c: 0.221, lightnessCurve: { start: 0.98, end: 0.15, type: 'linear' }, chromaCurve: { start: 0.013, peak: 0.221, end: 0.030, peakPosition: 0.40 } },
       violet: { h: 291.0, l: 0.53, c: 0.226, lightnessCurve: { start: 0.979, end: 0.15, type: 'linear' }, chromaCurve: { start: 0.011, peak: 0.226, end: 0.028, peakPosition: 0.40 } },
-      blue: { h: 275.2, l: 0.53, c: 0.258, lightnessCurve: { start: 0.971, end: 0.15, type: 'linear' }, chromaCurve: { start: 0.014, peak: 0.258, end: 0.025, peakPosition: 0.40 } }
+      blue: { h: 275.2, l: 0.53, c: 0.258, lightnessCurve: { start: 0.971, end: 0.15, type: 'linear' }, chromaCurve: { start: 0.014, peak: 0.258, end: 0.025, peakPosition: 0.40 } },
+      gray: { h: 0, l: 0.50, c: 0.0, lightnessCurve: { start: 0.98, end: 0.15, type: 'linear' }, chromaCurve: { start: 0.0, peak: 0.0, end: 0.0, peakPosition: 0.5 } }
+    }
+  },
+  '04': {
+    name: 'Preset 04 (Low Saturation)',
+    colors: {
+      // Reduced chroma across all ranges for syntax highlighting / reduced eye fatigue
+      // All chroma values reduced by ~30%, yellow uses 01's successful hue ramping
+      cyan: { h: 207.3, l: 0.50, c: 0.090, lightnessCurve: { start: 0.98, end: 0.15, type: 'linear' }, chromaCurve: { start: 0.012, peak: 0.090, end: 0.018, peakPosition: 0.35 } },
+      green: { h: 140.0, l: 0.50, c: 0.165, lightnessCurve: { start: 0.98, end: 0.15, type: 'linear' }, chromaCurve: { start: 0.022, peak: 0.165, end: 0.028, peakPosition: 0.35 } },
+      yellow: {
+        h: 92.0, l: 0.62, c: 0.145,
+        lightnessCurve: { start: 0.966, end: 0.18, type: 'linear' },
+        chromaCurve: { start: 0.065, peak: 0.145, end: 0.048, peakPosition: 0.36 },
+        hueCurve: { start: 95.8, end: 71.5, type: 'linear' },
+        useHueRamping: true
+      },
+      orange: { h: 46.6, l: 0.59, c: 0.145, lightnessCurve: { start: 0.958, end: 0.22, type: 'linear' }, chromaCurve: { start: 0.015, peak: 0.145, end: 0.046, peakPosition: 0.36 } },
+      red: { h: 27.0, l: 0.56, c: 0.145, lightnessCurve: { start: 0.95, end: 0.16, type: 'linear' }, chromaCurve: { start: 0.016, peak: 0.145, end: 0.047, peakPosition: 0.36 } },
+      pink: { h: 337.1, l: 0.52, c: 0.155, lightnessCurve: { start: 0.97, end: 0.15, type: 'linear' }, chromaCurve: { start: 0.015, peak: 0.155, end: 0.021, peakPosition: 0.40 } },
+      purple: { h: 312.8, l: 0.53, c: 0.155, lightnessCurve: { start: 0.98, end: 0.15, type: 'linear' }, chromaCurve: { start: 0.009, peak: 0.155, end: 0.021, peakPosition: 0.40 } },
+      violet: { h: 291.0, l: 0.53, c: 0.160, lightnessCurve: { start: 0.979, end: 0.15, type: 'linear' }, chromaCurve: { start: 0.008, peak: 0.160, end: 0.020, peakPosition: 0.40 } },
+      blue: { h: 275.2, l: 0.53, c: 0.180, lightnessCurve: { start: 0.971, end: 0.15, type: 'linear' }, chromaCurve: { start: 0.010, peak: 0.180, end: 0.018, peakPosition: 0.40 } },
+      gray: { h: 275.0, l: 0.54, c: 0.018, lightnessCurve: { start: 0.98, end: 0.15, type: 'linear' }, chromaCurve: { start: 0.014, peak: 0.021, end: 0.028, peakPosition: 0.50 } }
     }
   }
 };
@@ -395,7 +448,7 @@ function loadPreset(presetId) {
   selectHue(selectedHue);
 
   console.log('Preset loaded. Sample colors:');
-  ['cyan', 'green', 'yellow', 'orange', 'red', 'pink', 'purple', 'violet', 'blue'].forEach(hueName => {
+  ['cyan', 'green', 'yellow', 'orange', 'red', 'pink', 'purple', 'violet', 'blue', 'gray'].forEach(hueName => {
     if (colorSystem[hueName] && colorSystem[hueName].steps[0]) {
       const step = colorSystem[hueName].steps[0];
       const hex = oklchToHex(step);
@@ -506,7 +559,8 @@ function setupTweakpane() {
       Pink: 'pink',
       Purple: 'purple',
       Violet: 'violet',
-      Blue: 'blue'
+      Blue: 'blue',
+      Gray: 'gray'
     }
   }).on('change', (ev) => {
     selectHue(ev.value);
@@ -640,18 +694,34 @@ function setupTweakpane() {
   // Add separator
   pane.addSeparator();
 
-  // Download SVG button
-  pane.addButton({
-    title: 'Download SVG'
-  }).on('click', () => {
-    downloadSVG();
+  // Copy SVG button
+  const svgButton = pane.addButton({
+    title: 'Copy SVG'
+  });
+  svgButton.on('click', () => {
+    downloadSVG().then(() => {
+      svgButton.title = 'Copy SVG ✓';
+      setTimeout(() => {
+        svgButton.title = 'Copy SVG';
+      }, 2000);
+    }).catch(err => {
+      console.error('Failed to copy SVG:', err);
+    });
   });
 
   // Copy CSS button
-  pane.addButton({
+  const cssButton = pane.addButton({
     title: 'Copy CSS'
-  }).on('click', () => {
-    copyCSS();
+  });
+  cssButton.on('click', () => {
+    copyCSS().then(() => {
+      cssButton.title = 'Copy CSS ✓';
+      setTimeout(() => {
+        cssButton.title = 'Copy CSS';
+      }, 2000);
+    }).catch(err => {
+      console.error('Failed to copy CSS:', err);
+    });
   });
 }
 
@@ -945,7 +1015,7 @@ function downloadSVG() {
       .oklch-color { color: var(--oklch-value); }
     }
   </style>
-  <rect width="${width}" height="${height}" fill="#808080"/>
+  <rect width="${width}" height="${height}" fill="#000000"/>
 `;
 
   hueNames.forEach((hueName, rowIndex) => {
@@ -953,7 +1023,7 @@ function downloadSVG() {
 
     // Add label
     svg += `  <text x="${labelWidth - 10}" y="${y + cellSize / 2}"
-            font-family="Arial" font-size="14" fill="white"
+            font-family="Menlo, monospace" font-size="8" fill="#666666"
             text-anchor="end" dominant-baseline="middle">${hueName}</text>\n`;
 
     // Add color cells - convert OKLCH to approximate RGB for compatibility
@@ -966,14 +1036,8 @@ function downloadSVG() {
 
   svg += '</svg>';
 
-  // Download
-  const blob = new Blob([svg], { type: 'image/svg+xml' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'oklch-colors.svg';
-  a.click();
-  URL.revokeObjectURL(url);
+  // Copy to clipboard
+  return navigator.clipboard.writeText(svg);
 }
 
 // Convert OKLCH to HEX
@@ -1021,9 +1085,5 @@ function copyCSS() {
   css += '}';
 
   // Copy to clipboard
-  navigator.clipboard.writeText(css).then(() => {
-    alert('CSS copied to clipboard!');
-  }).catch(err => {
-    console.error('Failed to copy:', err);
-  });
+  return navigator.clipboard.writeText(css);
 }
