@@ -1,0 +1,101 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto Mono", "Source Code Pro", Menlo, Courier, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 14px;
+  background: #808080;
+  color: #000;
+  overflow: auto;
+}
+
+.app-container {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  padding: 20px;
+}
+
+h1 {
+  font-size: 11px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.main-layout {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  padding-top: 0;
+  overflow: auto;
+}
+
+.color-grid-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#color-grid {
+  display: grid;
+  gap: 0;
+  width: 50vw;
+  /* Grid columns/rows will be set dynamically by JS */
+}
+
+.row-label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 15px;
+  font-size: 11px;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+}
+
+.row-label input[type="radio"] {
+  margin-right: 8px;
+}
+
+.color-cell {
+  aspect-ratio: 1;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.color-cell:hover {
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+.control-panel {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 100;
+}
+
+.control-panel h2 {
+  display: none;
+}
+
+#tweakpane-container {
+  /* Tweakpane will handle its own styling */
+}
+
+/* Tweakpane overrides for minimal styling */
+.tp-dfwv {
+  min-width: 0 !important;
+}

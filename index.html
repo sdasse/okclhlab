@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OKLCH Lab</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <header>
+      <h1>OKLCH Lab</h1>
+    </header>
+
+    <div class="main-layout">
+      <div class="color-grid-wrapper">
+        <div id="color-grid"></div>
+      </div>
+
+      <div class="control-panel">
+        <h2>Control Panel</h2>
+        <div id="tweakpane-container"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="tweakpane.min.js"></script>
+  <script type="module">
+    // Import Culori for accurate gamut operations
+    import { oklch, rgb, formatHex, inGamut, clampChroma, converter } from 'https://cdn.skypack.dev/culori@3';
+
+    // Make Culori available globally
+    window.culori = { oklch, rgb, formatHex, inGamut, clampChroma, converter };
+  </script>
+  <script type="module" src="script.js"></script>
+</body>
+</html>
