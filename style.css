@@ -147,6 +147,7 @@ h1 {
 
   .row-label {
     font-size: 10px;
+    padding-left: 5px;
     padding-right: 8px;
   }
 
@@ -164,6 +165,7 @@ h1 {
 
   .row-label {
     font-size: 9px;
+    padding-left: 3px;
     padding-right: 5px;
   }
 
