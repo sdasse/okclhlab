@@ -663,6 +663,7 @@ function loadPreset(presetId) {
       // Copy fixedSteps if they exist
       if (presetColor.fixedSteps) {
         colorSystem[hueName].fixedSteps = JSON.parse(JSON.stringify(presetColor.fixedSteps));
+        console.log(`  ${hueName}: copied ${presetColor.fixedSteps.length} fixedSteps`);
       } else {
         delete colorSystem[hueName].fixedSteps;
       }
