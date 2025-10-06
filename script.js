@@ -660,6 +660,13 @@ function loadPreset(presetId) {
       // Copy gamutAware setting (default to true if not specified)
       colorSystem[hueName].gamutAware = presetColor.gamutAware !== undefined ? presetColor.gamutAware : true;
 
+      // Copy fixedSteps if they exist
+      if (presetColor.fixedSteps) {
+        colorSystem[hueName].fixedSteps = JSON.parse(JSON.stringify(presetColor.fixedSteps));
+      } else {
+        delete colorSystem[hueName].fixedSteps;
+      }
+
       console.log(`  ${hueName}: h=${presetColor.h}, lCurve=${presetColor.lightnessCurve.start}-${presetColor.lightnessCurve.end}, cCurve=${presetColor.chromaCurve.start}-${presetColor.chromaCurve.peak}-${presetColor.chromaCurve.end}`);
     }
   });
