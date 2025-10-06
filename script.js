@@ -977,8 +977,11 @@ function regenerateSingleHue(hueName) {
 
   // If fixed steps are provided and step count matches, use them directly
   if (hueData.fixedSteps && hueData.fixedSteps.length === stepCount) {
+    console.log(`Using fixedSteps for ${hueName}: ${hueData.fixedSteps.length} steps`);
     hueData.steps = JSON.parse(JSON.stringify(hueData.fixedSteps));
     return;
+  } else if (hueData.fixedSteps) {
+    console.log(`fixedSteps available for ${hueName} but count mismatch: ${hueData.fixedSteps.length} vs ${stepCount}`);
   }
 
   // Calculate lightness and chroma curves
