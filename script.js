@@ -480,7 +480,7 @@ const presets = {
       green: { h: 140.0, l: 0.50, c: 0.228, lightnessCurve: { start: 0.98, end: 0.073, type: 'linear' }, chromaCurve: { start: 0.031, peak: 0.228, end: 0.025, peakPosition: 0.27 }, gamutAware: true },
       yellow: {
         h: 80.0, l: 0.66, c: 0.169,
-        lightnessCurve: { start: 0.9717, end: 0.15, type: 'linear' },
+        lightnessCurve: { start: 0.9717, end: 0.4522, type: 'linear' },
         chromaCurve: { mode: 'gamut-boundary' },
         hueCurve: { start: 88.1, end: 71.7, type: 'linear' },
         useHueRamping: true,
