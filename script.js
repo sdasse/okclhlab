@@ -459,10 +459,10 @@ const presets = {
       cyan: { h: 207.3, l: 0.50, c: 0.121, lightnessCurve: { start: 0.98, end: 0.078, type: 'linear' }, chromaCurve: { start: 0.017, peak: 0.121, end: 0.014, peakPosition: 0.27 }, gamutAware: true },
       green: { h: 140.0, l: 0.50, c: 0.228, lightnessCurve: { start: 0.98, end: 0.073, type: 'linear' }, chromaCurve: { start: 0.031, peak: 0.228, end: 0.025, peakPosition: 0.27 }, gamutAware: true },
       yellow: {
-        h: 87.3, l: 0.85, c: 0.220,
-        lightnessCurve: { start: 0.96, end: 0.20, type: 'linear' },
-        chromaCurve: { start: 0.110, peak: 0.220, end: 0.070, peakPosition: 0.40 },
-        hueCurve: { start: 84.0, end: 98.0, type: 'linear' },
+        h: 80.0, l: 0.75, c: 0.169,
+        lightnessCurve: { start: 0.972, end: 0.15, type: 'linear' },
+        chromaCurve: { start: 0.033, peak: 0.169, end: 0.070, peakPosition: 0.33 },
+        hueCurve: { start: 88.1, end: 72.0, type: 'linear' },
         useHueRamping: true,
         gamutAware: false
       },
