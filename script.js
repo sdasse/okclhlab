@@ -508,7 +508,7 @@ let chromaCurveFolder = null;
 let gamutCache = {}; // Cache max chroma values for performance
 let params = {
   preset: '01',
-  steps: 12,
+  steps: 20,
   color: selectedHue,
   L: 70,
   C: 0.12,
