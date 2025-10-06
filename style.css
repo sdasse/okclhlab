@@ -53,7 +53,6 @@ h1 {
 #color-grid {
   display: grid;
   gap: 0;
-  column-gap: 10px;
   width: 50vw;
   margin: 0 auto;
   /* Grid columns/rows will be set dynamically by JS */
@@ -64,6 +63,7 @@ h1 {
   align-items: center;
   justify-content: flex-start;
   padding-left: 15px;
+  padding-right: 10px;
   font-size: 11px;
   color: #fff;
   cursor: pointer;
