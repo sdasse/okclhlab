@@ -350,12 +350,12 @@ const presets = {
       cyan: { h: 207.3, l: 0.50, c: 0.121, lightnessCurve: { start: 0.98, end: 0.078, type: 'linear' }, chromaCurve: { start: 0.017, peak: 0.121, end: 0.014, peakPosition: 0.27 }, gamutAware: true },
       green: { h: 140.0, l: 0.50, c: 0.228, lightnessCurve: { start: 0.98, end: 0.073, type: 'linear' }, chromaCurve: { start: 0.031, peak: 0.228, end: 0.025, peakPosition: 0.27 }, gamutAware: true },
       yellow: {
-        h: 92.0, l: 0.62, c: 0.201,
-        lightnessCurve: { start: 0.966, end: 0.152, type: 'linear' },
-        chromaCurve: { start: 0.093, peak: 0.201, end: 0.068, peakPosition: 0.36 },
-        hueCurve: { start: 95.8, end: 71.5, type: 'linear' },
+        h: 80.0, l: 0.66, c: 0.169,
+        lightnessCurve: { start: 0.9717, end: 0.25, type: 'linear' },
+        chromaCurve: { mode: 'gamut-boundary' },
+        hueCurve: { start: 88.1, end: 71.7, type: 'linear' },
         useHueRamping: true,
-        gamutAware: true
+        gamutAware: false
       },
       orange: { h: 46.6, l: 0.59, c: 0.201, lightnessCurve: { start: 0.958, end: 0.221, type: 'linear' }, chromaCurve: { start: 0.022, peak: 0.201, end: 0.062, peakPosition: 0.36 }, gamutAware: true },
       red: { h: 27.0, l: 0.56, c: 0.201, lightnessCurve: { start: 0.95, end: 0.159, type: 'linear' }, chromaCurve: { start: 0.023, peak: 0.201, end: 0.064, peakPosition: 0.36 }, gamutAware: true },
