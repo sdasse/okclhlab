@@ -218,14 +218,6 @@ function generateDefaultSteps() {
       hueData.lightnessCurve.type
     );
 
-    const chromaValues = calculateChromaCurve(
-      hueData.chromaCurve.start,
-      hueData.chromaCurve.peak,
-      hueData.chromaCurve.end,
-      hueData.chromaCurve.peakPosition,
-      stepCount
-    );
-
     // Calculate hue values (for colors with hue ramping)
     let hueValues;
     if (hueData.useHueRamping && hueData.hueCurve) {
@@ -237,15 +229,36 @@ function generateDefaultSteps() {
       );
     }
 
+    // Check if this hue uses gamut-boundary mode
+    const useGamutBoundary = hueData.chromaCurve && hueData.chromaCurve.mode === 'gamut-boundary';
+
+    let chromaValues;
+    if (useGamutBoundary) {
+      // Generate maximum saturation values by tracking gamut boundary
+      console.log(`Using gamut-boundary mode for ${hueName}`);
+      chromaValues = lightnessValues.map((l, i) => {
+        const h = hueValues ? hueValues[i] : hueData.h;
+        return findMaxChroma(l, h);
+      });
+    } else {
+      // Standard curve interpolation
+      chromaValues = calculateChromaCurve(
+        hueData.chromaCurve.start,
+        hueData.chromaCurve.peak,
+        hueData.chromaCurve.end,
+        hueData.chromaCurve.peakPosition,
+        stepCount
+      );
+    }
+
     // Create steps using curve values
-    // If gamut-aware, clamp chroma during generation (not just rendering)
     for (let i = 0; i < stepCount; i++) {
       const l = Math.max(0.05, Math.min(0.98, lightnessValues[i]));
       let c = Math.max(0, Math.min(0.4, chromaValues[i]));
       const h = hueValues ? hueValues[i] : hueData.h;
 
-      // Apply gamut clamping during generation if enabled
-      if (params.gamutAware) {
+      // Apply gamut clamping for standard curves (not needed for gamut-boundary mode)
+      if (!useGamutBoundary && hueData.gamutAware) {
         const maxC = findMaxChroma(l, h);
         c = Math.min(c, maxC);
       }
@@ -466,34 +479,12 @@ const presets = {
       cyan: { h: 207.3, l: 0.50, c: 0.121, lightnessCurve: { start: 0.98, end: 0.078, type: 'linear' }, chromaCurve: { start: 0.017, peak: 0.121, end: 0.014, peakPosition: 0.27 }, gamutAware: true },
       green: { h: 140.0, l: 0.50, c: 0.228, lightnessCurve: { start: 0.98, end: 0.073, type: 'linear' }, chromaCurve: { start: 0.031, peak: 0.228, end: 0.025, peakPosition: 0.27 }, gamutAware: true },
       yellow: {
-        h: 79.9, l: 0.66, c: 0.1715,
+        h: 80.0, l: 0.66, c: 0.169,
         lightnessCurve: { start: 0.9717, end: 0.15, type: 'linear' },
-        chromaCurve: { start: 0.0450, peak: 0.1715, end: 0.060, peakPosition: 0.23 },
+        chromaCurve: { mode: 'gamut-boundary' },
         hueCurve: { start: 88.1, end: 71.7, type: 'linear' },
         useHueRamping: true,
-        gamutAware: false,
-        fixedSteps: [
-          { l: 0.9717, c: 0.0332, h: 88.06 },
-          { l: 0.9281, c: 0.0881, h: 88.97 },
-          { l: 0.9006, c: 0.1196, h: 88.26 },
-          { l: 0.8639, c: 0.1541, h: 86.02 },
-          { l: 0.8350, c: 0.1689, h: 82.01 },
-          { l: 0.8153, c: 0.1689, h: 79.98 },
-          { l: 0.7882, c: 0.1633, h: 80.00 },
-          { l: 0.7477, c: 0.1549, h: 79.84 },
-          { l: 0.7055, c: 0.1461, h: 80.11 },
-          { l: 0.6669, c: 0.1381, h: 80.11 },
-          { l: 0.6159, c: 0.1274, h: 80.60 },
-          { l: 0.5739, c: 0.1189, h: 79.83 },
-          { l: 0.5386, c: 0.1113, h: 80.91 },
-          { l: 0.4950, c: 0.1025, h: 79.50 },
-          { l: 0.4500, c: 0.0935, h: 78.00 },
-          { l: 0.4050, c: 0.0845, h: 76.50 },
-          { l: 0.3600, c: 0.0755, h: 75.00 },
-          { l: 0.3150, c: 0.0665, h: 73.50 },
-          { l: 0.2700, c: 0.0575, h: 72.00 },
-          { l: 0.2250, c: 0.0485, h: 70.50 }
-        ]
+        gamutAware: false
       },
       orange: { h: 46.6, l: 0.59, c: 0.220, lightnessCurve: { start: 0.958, end: 0.221, type: 'linear' }, chromaCurve: { start: 0.035, peak: 0.220, end: 0.080, peakPosition: 0.36 }, gamutAware: false },
       red: { h: 27.0, l: 0.56, c: 0.220, lightnessCurve: { start: 0.95, end: 0.159, type: 'linear' }, chromaCurve: { start: 0.035, peak: 0.220, end: 0.080, peakPosition: 0.36 }, gamutAware: true },
@@ -1000,14 +991,6 @@ function regenerateSingleHue(hueName) {
     hueData.lightnessCurve.type
   );
 
-  const chromaValues = calculateChromaCurve(
-    hueData.chromaCurve.start,
-    hueData.chromaCurve.peak,
-    hueData.chromaCurve.end,
-    hueData.chromaCurve.peakPosition,
-    stepCount
-  );
-
   // Calculate hue values (for colors with hue ramping)
   let hueValues;
   if (hueData.useHueRamping && hueData.hueCurve) {
@@ -1019,14 +1002,36 @@ function regenerateSingleHue(hueName) {
     );
   }
 
+  // Check if this hue uses gamut-boundary mode
+  const useGamutBoundary = hueData.chromaCurve && hueData.chromaCurve.mode === 'gamut-boundary';
+
+  let chromaValues;
+  if (useGamutBoundary) {
+    // Generate maximum saturation values by tracking gamut boundary
+    console.log(`Using gamut-boundary mode for ${hueName}`);
+    chromaValues = lightnessValues.map((l, i) => {
+      const h = hueValues ? hueValues[i] : hueData.h;
+      return findMaxChroma(l, h);
+    });
+  } else {
+    // Standard curve interpolation
+    chromaValues = calculateChromaCurve(
+      hueData.chromaCurve.start,
+      hueData.chromaCurve.peak,
+      hueData.chromaCurve.end,
+      hueData.chromaCurve.peakPosition,
+      stepCount
+    );
+  }
+
   // Create steps using curve values
   for (let i = 0; i < stepCount; i++) {
     const l = Math.max(0.05, Math.min(0.98, lightnessValues[i]));
     let c = Math.max(0, Math.min(0.4, chromaValues[i]));
     const h = hueValues ? hueValues[i] : hueData.h;
 
-    // Apply gamut clamping during generation if enabled for this hue
-    if (hueData.gamutAware) {
+    // Apply gamut clamping for standard curves (not needed for gamut-boundary mode)
+    if (!useGamutBoundary && hueData.gamutAware) {
       const maxC = findMaxChroma(l, h);
       c = Math.min(c, maxC);
     }
