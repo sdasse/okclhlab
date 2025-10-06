@@ -203,6 +203,13 @@ function generateDefaultSteps() {
 
     const stepCount = params.steps;
 
+    // If fixed steps are provided and step count matches, use them directly
+    if (hueData.fixedSteps && hueData.fixedSteps.length === stepCount) {
+      console.log(`Using fixedSteps for ${hueName}: ${hueData.fixedSteps.length} steps`);
+      hueData.steps = JSON.parse(JSON.stringify(hueData.fixedSteps));
+      return;
+    }
+
     // Calculate lightness and chroma curves
     const lightnessValues = calculateLightnessCurve(
       hueData.lightnessCurve.start,
