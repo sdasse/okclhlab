@@ -782,7 +782,7 @@ function setupTweakpane() {
   pane.addInput(params, 'steps', {
     label: 'Steps',
     min: 6,
-    max: 20,
+    max: 30,
     step: 1
   }).on('change', (ev) => {
     if (!isUpdatingSliders) {
