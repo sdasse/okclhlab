@@ -498,10 +498,10 @@ const presets = {
     }
   },
   '08': {
-    name: 'Preset 08 (Balanced Desaturation)',
+    name: 'Preset 08 (Boosted Cool Colors)',
     colors: {
-      // Based on Preset 01 with mathematically balanced cool color adjustments
-      // Gray desaturated, cool colors smoothly reduced for better warm/cool balance
+      // Based on Preset 01 with boosted cool color saturation
+      // Gray desaturated, cool colors (blue/violet/purple/pink) boosted for vibrancy
       cyan: { h: 207.3, l: 0.50, c: 0.121, lightnessCurve: { start: 0.98, end: 0.15, type: 'linear' }, chromaCurve: { start: 0.017, peak: 0.121, end: 0.025, peakPosition: 0.36 } },
       green: { h: 140.0, l: 0.50, c: 0.228, lightnessCurve: { start: 0.98, end: 0.15, type: 'linear' }, chromaCurve: { start: 0.031, peak: 0.228, end: 0.040, peakPosition: 0.36 } },
       yellow: {
@@ -514,10 +514,10 @@ const presets = {
       },
       orange: { h: 46.6, l: 0.59, c: 0.201, lightnessCurve: { start: 0.958, end: 0.20, type: 'linear' }, chromaCurve: { start: 0.022, peak: 0.201, end: 0.062, peakPosition: 0.36 }, gamutAware: false },
       red: { h: 27.0, l: 0.56, c: 0.201, lightnessCurve: { start: 0.95, end: 0.15, type: 'linear' }, chromaCurve: { start: 0.023, peak: 0.201, end: 0.064, peakPosition: 0.36 } },
-      pink: { h: 337.1, l: 0.52, c: 0.195, lightnessCurve: { start: 0.97, end: 0.084, type: 'linear' }, chromaCurve: { start: 0.021, peak: 0.195, end: 0.019, peakPosition: 0.38 } },
-      purple: { h: 312.8, l: 0.53, c: 0.210, lightnessCurve: { start: 0.98, end: 0.082, type: 'linear' }, chromaCurve: { start: 0.013, peak: 0.210, end: 0.020, peakPosition: 0.38 } },
-      violet: { h: 291.0, l: 0.53, c: 0.228, lightnessCurve: { start: 0.979, end: 0.078, type: 'linear' }, chromaCurve: { start: 0.011, peak: 0.228, end: 0.018, peakPosition: 0.38 } },
-      blue: { h: 275.2, l: 0.53, c: 0.248, lightnessCurve: { start: 0.971, end: 0.084, type: 'linear' }, chromaCurve: { start: 0.014, peak: 0.248, end: 0.012, peakPosition: 0.38 } },
+      pink: { h: 337.1, l: 0.52, c: 0.204, lightnessCurve: { start: 0.97, end: 0.084, type: 'linear' }, chromaCurve: { start: 0.021, peak: 0.204, end: 0.019, peakPosition: 0.38 } },
+      purple: { h: 312.8, l: 0.53, c: 0.230, lightnessCurve: { start: 0.98, end: 0.082, type: 'linear' }, chromaCurve: { start: 0.013, peak: 0.230, end: 0.020, peakPosition: 0.38 } },
+      violet: { h: 291.0, l: 0.53, c: 0.265, lightnessCurve: { start: 0.979, end: 0.078, type: 'linear' }, chromaCurve: { start: 0.011, peak: 0.265, end: 0.018, peakPosition: 0.38 } },
+      blue: { h: 275.2, l: 0.53, c: 0.279, lightnessCurve: { start: 0.971, end: 0.084, type: 'linear' }, chromaCurve: { start: 0.014, peak: 0.279, end: 0.012, peakPosition: 0.38 } },
       gray: { h: 275.0, l: 0.54, c: 0.023, lightnessCurve: { start: 0.98, end: 0.15, type: 'linear' }, chromaCurve: { start: 0.02, peak: 0.02, end: 0.02, peakPosition: 0.50 } }
     }
   }
